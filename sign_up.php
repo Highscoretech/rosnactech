@@ -8,14 +8,14 @@ if (isset($_POST['log'])) {
 	$firstname = $_REQUEST['firstname'];
     $lastname = $_REQUEST['lastname'];
     $email = $_REQUEST['email'];
-    $affiliator = $_REQUEST['ref_code'];
+    $affiliator = $_REQUEST['affiliator'];
     $ref_code = strtoupper(bin2hex(random_bytes(4)));
 
-        $password = $_REQUEST['password'];
+     $password = $_REQUEST['password'];
     $confirm = $_REQUEST['confirm'];
     $code = $_REQUEST['code'];
     $acc_bal = 1000;
-
+    
 
     if ($password != $confirm){
         echo "password did not match";
@@ -28,44 +28,53 @@ if (isset($_POST['log'])) {
                     $plan = $row["plan"];
             
                         if($affiliator == ''){
-                        $sql = "INSERT INTO `login` VALUES ('$email','$code','$affiliator','$ref_code','$password')";
+                        $sql = "INSERT INTO `login` VALUES ('','$email','$code','$affiliator','$ref_code','$password',Now())";
                         mysqli_query($conn, $sql);
                     
                         $sql = "INSERT INTO `notification` VALUES ('$email','Welcome to rosnac our investor, We are glad to have you here','')";
                         mysqli_query($conn, $sql);
                     
-                        $sql = "INSERT INTO `account` VALUES ('$email','?','?','?','$acc_bal','0','?','?')";
+                        $sql = "INSERT INTO `account` VALUES ('','$email','?','?','?','$acc_bal','0','?','?','Not set')";
                         mysqli_query($conn, $sql);
                     
-                        $sql = "INSERT INTO `users` VALUES ('$email','$firstname','$lastname','?','?','','?','?','?','$plan',Now())";
+                        $sql = "INSERT INTO `users` VALUES ('$email','$firstname','$lastname','?','?','?','?','?','?','$plan',Now())";
                         mysqli_query($conn, $sql);
+
+                        $sql = "UPDATE users SET `date`= DATE_ADD(`date` , INTERVAL 30 DAY) WHERE email = '{$email}'";
+                        $result = mysqli_query($conn, $sql);
+
 
                         $sql = "DELETE FROM `market` WHERE  `paymentid` = '$code' ";
                         mysqli_query($conn, $sql);
 
                         header('location: home.php');
-                        }else{
-                            $sql = "INSERT INTO `login` VALUES ('$email','$code','$affiliator','$ref_code','$password')";
+                        }
+                        if($affiliator != ''){
+                            $sql = "INSERT INTO `login` VALUES ('','$email','$code','$affiliator','$ref_code','$password',Now())";
                             mysqli_query($conn, $sql);
                         
                             $sql = "INSERT INTO `notification` VALUES ('$email','Welcome to rosnac our investor, We are glad to have you here'','')";
                             mysqli_query($conn, $sql);
                         
-                            $sql = "INSERT INTO `account` VALUES ('$email','?','?','?','$acc_bal','0','?','?')";
+                            $sql = "INSERT INTO `account` VALUES ('','$email','?','?','?','$acc_bal','0','?','?','Not set')";
                             mysqli_query($conn, $sql);
                         
-                            $sql = "INSERT INTO `users` VALUES ('$email','$firstname','$lastname'','?','?','','?','?','?',Now())";
-                            mysqli_query($conn, $sql);
+                            $sql = "INSERT INTO `users` VALUES ('$email','$firstname','$lastname','?','?','','?','?','?','$plan',Now())";
+                        mysqli_query($conn, $sql);
+                        $sql = "UPDATE users SET `date`= DATE_ADD(`date` , INTERVAL 30 DAY) WHERE email = '{$email}'";
+                        $result = mysqli_query($conn, $sql);
+
                             if ($plan == 1){
-                                $sql = "SELECT * FROM `login` WHERE `affiliator` = '{$affiliator}'";
+                                $sql = "SELECT * FROM `login` WHERE `ref_code` = '{$affiliator}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     while ($row = $result->fetch_assoc()) {
                                         $aff_email = $row["email"];
-                
+                                        
                                         $sql = "SELECT * FROM `account` WHERE `email` = '{$aff_email}'";
                                         if ($result = mysqli_query($conn, $sql)) {
                                             while ($row = $result->fetch_assoc()) {
                                                 $bonus = $row["ref_bal"] + 250;
+                                                $aff_email = $row["email"];
 
                                                 $sql = "UPDATE `account` SET `ref_bal`= '{$bonus}' WHERE `email` = '{$aff_email}'";
                                                 if ($result = mysqli_query($conn, $sql)) {
@@ -79,7 +88,7 @@ if (isset($_POST['log'])) {
                                     }				 
                                 }
                             } elseif ($plan == 2){
-                                $sql = "SELECT * FROM `login` WHERE `affiliator` = '{$affiliator}'";
+                                $sql = "SELECT * FROM `login` WHERE `ref_code` = '{$affiliator}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     while ($row = $result->fetch_assoc()) {
                                         $aff_email = $row["email"];
@@ -101,7 +110,7 @@ if (isset($_POST['log'])) {
                                     }					 
                                 }
                             }elseif ($plan == 3){
-                                $sql = "SELECT * FROM `login` WHERE `affiliator` = '{$affiliator}'";
+                                $sql = "SELECT * FROM `login` WHERE `ref_code` = '{$affiliator}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     while ($row = $result->fetch_assoc()) {
                                         $aff_email = $row["email"];
@@ -123,7 +132,7 @@ if (isset($_POST['log'])) {
                                     }
                                 }
                             }elseif ($plan == 4){
-                                $sql = "SELECT * FROM `login` WHERE `affiliator` = '{$affiliator}'";
+                                $sql = "SELECT * FROM `login` WHERE `ref_code` = '{$affiliator}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     while ($row = $result->fetch_assoc()) {
                                         $aff_email = $row["email"];
@@ -145,7 +154,7 @@ if (isset($_POST['log'])) {
                                     }	
                                 }
                             }elseif ($plan == 5){
-                                $sql = "SELECT * FROM `login` WHERE `affiliator` = '{$affiliator}'";
+                                $sql = "SELECT * FROM `login` WHERE `ref_code` = '{$affiliator}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     while ($row = $result->fetch_assoc()) {
                                         $aff_email = $row["email"];
@@ -167,7 +176,7 @@ if (isset($_POST['log'])) {
                                     }
                                 }
                             }elseif ($plan == 6){
-                                $sql = "SELECT * FROM `login` WHERE `affiliator` = '{$affiliator}'";
+                                $sql = "SELECT * FROM `login` WHERE `ref_code` = '{$affiliator}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     while ($row = $result->fetch_assoc()) {
                                         $aff_email = $row["email"];
@@ -189,7 +198,7 @@ if (isset($_POST['log'])) {
                                     }
                                 }
                             }elseif ($plan == 7){
-                                $sql = "SELECT * FROM `login` WHERE `affiliator` = '{$affiliator}'";
+                                $sql = "SELECT * FROM `login` WHERE `ref_code` = '{$affiliator}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     while ($row = $result->fetch_assoc()) {
                                         $aff_email = $row["email"];
@@ -211,7 +220,7 @@ if (isset($_POST['log'])) {
                                     }
                                 }
                             }elseif ($plan == 8){
-                                $sql = "SELECT * FROM `login` WHERE `affiliator` = '{$affiliator}'";
+                                $sql = "SELECT * FROM `login` WHERE `ref_code` = '{$affiliator}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     while ($row = $result->fetch_assoc()) {
                                         $aff_email = $row["email"];
@@ -234,7 +243,7 @@ if (isset($_POST['log'])) {
                                     }
                                 }
                             }elseif ($plan == 9){
-                                $sql = "SELECT * FROM `login` WHERE `affiliator` = '{$affiliator}'";
+                                $sql = "SELECT * FROM `login` WHERE `ref_code` = '{$affiliator}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     while ($row = $result->fetch_assoc()) {
                                         $aff_email = $row["email"];

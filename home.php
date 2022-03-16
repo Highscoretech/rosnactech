@@ -166,11 +166,11 @@ if ($result = mysqli_query($conn, $sql)) {
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                   ></path>
                 </svg>
-                <span class="ml-4">purchase a plan</span>
+                <span class="ml-4">Posts</span>
               </a>
             </li> 
             <li class="relative px-6 py-3">
-              <a
+              <!-- <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="edit.php"
               >
@@ -234,11 +234,11 @@ if ($result = mysqli_query($conn, $sql)) {
                   ></path>
                 </svg>
                 <span class="ml-4">Activies</span>
-                <!-- <br>
+                <br>
                 <small id="meg" style="color: red;"></small> -->
                 
               </a>
-            </li>
+            </li> 
             <li class="relative px-6 py-3">
               <!-- <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -451,10 +451,10 @@ if ($result = mysqli_query($conn, $sql)) {
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                   ></path>
                 </svg>
-                <span class="ml-4">purchase plan</span>
+                <span class="ml-4">Post</span>
               </a>
             </li>
-            <li class="relative px-6 py-3">
+            <!-- <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="edit.php"
@@ -500,7 +500,7 @@ if ($result = mysqli_query($conn, $sql)) {
               </a>
             </li>
             <li class="relative px-6 py-3">
-              <!-- <script>
+               <script>
                 let megEl = document.getElementById("meg")
                 
                 function active(){
@@ -508,7 +508,7 @@ if ($result = mysqli_query($conn, $sql)) {
                 }
               
               </script> -->
-              <a
+              <!-- <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="Activities.php" 
               >
@@ -528,8 +528,8 @@ if ($result = mysqli_query($conn, $sql)) {
                 </svg>
                 <span class="ml-4">Activities</span>
                 
-              </a>
-            </li>
+              </a> -->
+            </li> 
             <li class="relative px-6 py-3">
               <!-- <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -846,7 +846,7 @@ if ($result = mysqli_query($conn, $sql)) {
                     <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                        href="#"
+                        href="pages/profile.php"
                       >
                         <svg
                           class="w-4 h-4 mr-3"
@@ -868,7 +868,7 @@ if ($result = mysqli_query($conn, $sql)) {
                     <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                        href="#"
+                        href="pages/set.php"
                       >
                         <svg
                           class="w-4 h-4 mr-3"
@@ -1253,19 +1253,19 @@ if ($result = mysqli_query($conn, $sql)) {
                     <span
                       class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"
                     ></span>
-                    <span>Shirts</span>
+                    <span>Investment</span>
                   </div>
                   <div class="flex items-center">
                     <span
                       class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"
                     ></span>
-                    <span>Shoes</span>
+                    <span>charts</span>
                   </div>
                   <div class="flex items-center">
                     <span
                       class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
                     ></span>
-                    <span>Bags</span>
+                    <span>Development</span>
                   </div>
                 </div>
               </div>
