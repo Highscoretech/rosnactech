@@ -17,12 +17,12 @@
 $sql = "SELECT * FROM `users` WHERE email = '{$emaili}'";
 if ($result = mysqli_query($conn, $sql)) {
     while ($row = $result->fetch_assoc()) {
-        $amount = $row["plan"];
+        $plan = $row["plan"];
 
             $sql = "SELECT * FROM `account` WHERE email = '{$emaili}'";
             if ($result = mysqli_query($conn, $sql)) {
                 while ($row = $result->fetch_assoc()) {
-                    $amount = $row["balance"];
+                     $amount = $row["balance"];
             //silver plan
                         function silver($amount){
                             $amount += 250;
@@ -166,7 +166,7 @@ if ($result = mysqli_query($conn, $sql)) {
                         //     }
                         // }
 
-                        if (isset($_POST['click_button'])) {
+                        if (isset($_POST['submit'])) {
 
                                             //Get Heroku ClearDB connection information
                             $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
@@ -189,7 +189,7 @@ if ($result = mysqli_query($conn, $sql)) {
                             
                             if ( $plan == 1){
                                 $acc = silver($amount);
-                                $sql = "UPDATE users SET `acc_bal`= '{$acc}' WHERE email = '{$emaili}'";
+                                $sql = "UPDATE account SET `balance`= '{$acc}' WHERE email = '{$emaili}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     echo 'sucessfully';
                                     header("Location: home.php");
@@ -197,7 +197,7 @@ if ($result = mysqli_query($conn, $sql)) {
                             }
                             elseif ( $plan == 2){
                                 $acc = pearl($amount);
-                                $sql = "UPDATE users SET `acc_bal`= '{$acc}' WHERE email = '{$emaili}'";
+                                $sql = "UPDATE account SET `balance`= '{$acc}' WHERE email = '{$emaili}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     echo 'sucessfully';
                                     header("Location: home.php");
@@ -205,14 +205,14 @@ if ($result = mysqli_query($conn, $sql)) {
                                 
                             } if ( $plan == 3){
                                 $acc = red($amount);
-                                $sql = "UPDATE users SET `acc_bal`= '{$acc}' WHERE email = '{$emaili}'";
+                                $sql = "UPDATE account SET `balance`= '{$acc}' WHERE email = '{$emaili}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     echo 'sucessfully';
                                     header("Location: home.php");
                                 }
                             } if ( $plan == 4){
                                 $acc = tani($amount);
-                                $sql = "UPDATE users SET `acc_bal`= '{$acc}' WHERE email = '{$emaili}'";
+                                $sql = "UPDATE account SET `balance`= '{$acc}' WHERE email = '{$emaili}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     echo 'sucessfully';
                                     header("Location: home.php");
@@ -229,7 +229,7 @@ if ($result = mysqli_query($conn, $sql)) {
                             }
                             if ( $plan == 6){
                                 $acc = opal($amount);
-                                $sql = "UPDATE users SET `acc_bal`= '{$acc}' WHERE email = '{$emaili}'";
+                                $sql = "UPDATE account SET `balance`= '{$acc}' WHERE email = '{$emaili}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     echo 'sucessfully';
                                     header("Location: home.php");
@@ -237,7 +237,7 @@ if ($result = mysqli_query($conn, $sql)) {
                             
                             } if ( $plan == 7){
                                 $acc = diamond($amount);
-                                $sql = "UPDATE users SET `acc_bal`= '{$acc}' WHERE email = '{$emaili}'";
+                                $sql = "UPDATE account SET `balance`= '{$acc}' WHERE email = '{$emaili}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     echo 'sucessfully';
                                     header("Location: home.php");
@@ -245,14 +245,14 @@ if ($result = mysqli_query($conn, $sql)) {
                             
                             } if ( $plan == 8){
                                 $acc = benito($amount);
-                                $sql = "UPDATE users SET `acc_bal`= '{$acc}' WHERE email = '{$emaili}'";
+                                $sql = "UPDATE account SET `balance`= '{$acc}' WHERE email = '{$emaili}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     echo 'sucessfully';
                                     header("Location: home.php");
                                 }
                             } if ( $plan == 9){
                                 $acc = ruby($amount);
-                            $sql = "UPDATE users SET `acc_bal`= '{$acc}' WHERE email = '{$emaili}'";
+                                $sql = "UPDATE account SET `balance`= '{$acc}' WHERE email = '{$emaili}'";
                                 if ($result = mysqli_query($conn, $sql)) {
                                     echo 'sucessfully';
                                     header("Location: home.php");
