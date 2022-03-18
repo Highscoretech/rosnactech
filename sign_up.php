@@ -22,10 +22,6 @@ if (isset($_POST['log'])) {
         exit;
     }else{
         if($code != ''){
-            $sql = "SELECT `email` FROM `login` WHERE `email` = '$email'";  
-            if ($result = mysqli_query($conn, $sql)) {
-                echo "email already exist";
-            } 
                $sql = "SELECT * FROM `market` WHERE `paymentid` = '$code'";  
                     if ($result = mysqli_query($conn, $sql)) {
                         while ($row = $result->fetch_assoc()) {
